@@ -27,12 +27,12 @@ Organization:
       OrganizationalUnitName: development
       Accounts: !Ref DevelopmentAccount
 
+# Created a suspeded OU for test accounts not being used
   SuspendedOU:
     Type: OC::ORG::OrganizationalUnit
     Properties:
       OrganizationalUnitName: suspended
       Accounts: !Ref TestAccount1
-
 
   ProductionAccount:
     Type: OC::ORG::Account
@@ -63,6 +63,7 @@ Organization:
   #       - !Ref TestAccount1
 
 
+# This account was a test and now moved to suspended OU
   TestAccount1:
     Type: OC::ORG::Account
     Properties:
