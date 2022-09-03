@@ -1,0 +1,80 @@
+AWSTemplateFormatVersion: '2010-09-09-OC'
+Description: default template generated for organization with master account 707777535107
+
+Organization:
+  ManagementAccount:
+    Type: OC::ORG::MasterAccount
+    Properties:
+      AccountName: kais
+      AccountId: '707777535107'
+      RootEmail: kaisdewani@gmail.com
+      Alias: kais-aws-v2
+
+  OrganizationRoot:
+    Type: OC::ORG::OrganizationRoot
+    Properties:
+      DefaultOrganizationAccessRoleName: OrganizationAccountAccessRole
+
+  ProductionOU:
+    Type: OC::ORG::OrganizationalUnit
+    Properties:
+      OrganizationalUnitName: production
+      Accounts: !Ref ProductionAccount
+
+  DevelopmentOU:
+    Type: OC::ORG::OrganizationalUnit
+    Properties:
+      OrganizationalUnitName: development
+      Accounts: !Ref DevelopmentAccount
+
+  SuspendedOU:
+    Type: OC::ORG::OrganizationalUnit
+    Properties:
+      OrganizationalUnitName: suspended
+      Accounts: !Ref TestAccount1
+
+
+  ProductionAccount:
+    Type: OC::ORG::Account
+    Properties:
+      AccountName: Production Account
+      AccountId: '111111111111'
+      RootEmail: kaisdewani+prod@gmail.com
+      PasswordPolicy: !Ref PasswordPolicy
+
+  DevelopmentAccount:
+    Type: OC::ORG::Account
+    Properties:
+      AccountName: Development Account
+      AccountId: '222222222222'
+      RootEmail: kaisdewani+test2@gmail.com
+      PasswordPolicy: !Ref PasswordPolicy
+
+  # ProductionOU:
+  #   Type: OC::ORG::OrganizationalUnit
+  #   Properties:
+  #     OrganizationalUnitName: production
+
+  # DevelopmentOU:
+  #   Type: OC::ORG::OrganizationalUnit
+  #   Properties:
+  #     OrganizationalUnitName: development
+  #     Accounts:
+  #       - !Ref TestAccount1
+
+
+  TestAccount1:
+    Type: OC::ORG::Account
+    Properties:
+      Alias: test-account-1-kais
+      PasswordPolicy: !Ref PasswordPolicy
+      AccountName: Test Account 1
+      RootEmail: kaisdewani+testAccount1@gmail.com
+
+  PasswordPolicy:
+    Type: OC::ORG::PasswordPolicy
+    Properties:
+      MinimumPasswordLength: 12
+      RequireLowercaseCharacters: true
+      RequireNumbers: true
+
