@@ -342,6 +342,9 @@
         </tr>
       </table>
       <hr class="section-break" />
+      <div>
+        <h1>Page View Count:  <span id="theCounter">.</span></h1>
+      </div>
       <!-- Education Section -->
       <!-- 
         <table>
@@ -376,7 +379,11 @@
     --></div>
 
     <script>
-      function getCounter() {
+
+      const sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
+
+      async function getCounter() {
+          await sleep(1000);
           var url = "https://ykwtqllnii.execute-api.us-east-1.amazonaws.com/Test/";
     
           var xhr = new XMLHttpRequest();
@@ -388,10 +395,9 @@
           xhr.onload = () => {
               // get JSON response
               const countNum = xhr.response;
-              console.log(countNum)
+              console.log(countNum["message"])
+              document.getElementById("theCounter").innerHTML = "whatever";
           }
-
-        
         }
 
 
@@ -412,6 +418,9 @@
           }};
 
         xhr.send('{}');
+
+        getCounter();
+
       }
       </script>
 
