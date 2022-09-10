@@ -104,7 +104,7 @@
       }
     </style>
   </head>
-  <body>
+  <body onload="postToCounter()">
     <!--[if lt IE 8]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -375,20 +375,26 @@
       </table>
     --></div>
 
-    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
     <script>
-      window.ga = function () {
-        ga.q.push(arguments);
-      };
-      ga.q = [];
-      ga.l = +new Date();
-      ga("create", "UA-XXXXX-Y", "auto");
-      ga("send", "pageview");
-    </script>
-    <script
-      src="https://www.google-analytics.com/analytics.js"
-      async
-      defer
-    ></script>
+      function postToCounter() {
+      var url = "https://xh4sycy7fd.execute-api.us-east-1.amazonaws.com/Test";
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", url);
+
+      xhr.setRequestHeader("Accept", "application/json");
+      xhr.setRequestHeader("Content-Type", "application/json");
+
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            console.log(xhr.status);
+            console.log(xhr.responseText);
+        }};
+
+      xhr.send('{"firstName": "Test", "lastName": "from website"}');
+      }
+      </script>
+
   </body>
 </html>
