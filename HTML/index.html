@@ -379,48 +379,31 @@
     --></div>
 
     <script>
-
-      const sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
-
-      async function getCounter() {
-          await sleep(1000);
-          var url = "https://ykwtqllnii.execute-api.us-east-1.amazonaws.com/Test/";
-    
-          var xhr = new XMLHttpRequest();
-          xhr.open("GET", url);
-          xhr.responseType = 'json';
-
-          xhr.send();
-
-          xhr.onload = () => {
-              // get JSON response
-              const countNum = xhr.response;
-              console.log(countNum["message"])
-              document.getElementById("theCounter").innerHTML = "whatever";
-          }
-        }
-
-
       function postToCounter() {
-        var url = "https://ykwtqllnii.execute-api.us-east-1.amazonaws.com/Test";
-
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", url);
-
-        xhr.setRequestHeader("Accept", "application/json");
-        xhr.setRequestHeader("Content-Type", "application/json");
-
-
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4) {
-              console.log(xhr.status);
-              console.log(xhr.responseText);
-          }};
-
-        xhr.send('{}');
+        fetch('https://ykwtqllnii.execute-api.us-east-1.amazonaws.com/Test/', {
+          method: 'POST', // or 'PUT'
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
 
         getCounter();
+      }
 
+      const sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
+      async function getCounter() {
+        await sleep(1000);
+        fetch('https://ykwtqllnii.execute-api.us-east-1.amazonaws.com/Test/')
+          .then((response) => response.json())
+          .then((data) => console.log(data));
       }
       </script>
 
