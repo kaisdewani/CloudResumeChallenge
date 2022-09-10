@@ -376,23 +376,42 @@
     --></div>
 
     <script>
+      function getCounter() {
+          var url = "https://ykwtqllnii.execute-api.us-east-1.amazonaws.com/Test/";
+    
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", url);
+          xhr.responseType = 'json';
+
+          xhr.send();
+
+          xhr.onload = () => {
+              // get JSON response
+              const countNum = xhr.response;
+              console.log(countNum)
+          }
+
+        
+        }
+
+
       function postToCounter() {
-      var url = "https://xh4sycy7fd.execute-api.us-east-1.amazonaws.com/Test";
+        var url = "https://ykwtqllnii.execute-api.us-east-1.amazonaws.com/Test";
 
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", url);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url);
 
-      xhr.setRequestHeader("Accept", "application/json");
-      xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.setRequestHeader("Content-Type", "application/json");
 
 
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            console.log(xhr.status);
-            console.log(xhr.responseText);
-        }};
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+              console.log(xhr.status);
+              console.log(xhr.responseText);
+          }};
 
-      xhr.send('{"firstName": "Test", "lastName": "from website"}');
+        xhr.send('{}');
       }
       </script>
 
