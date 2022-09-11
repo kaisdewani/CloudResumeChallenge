@@ -403,7 +403,7 @@
         await sleep(1000);
         fetch('https://ykwtqllnii.execute-api.us-east-1.amazonaws.com/Test/')
         .then(res => res.json()) // the .json() method parses the JSON response into a JS object literal
-        .then(data => document.getElementById("theCounter").innerHTML = JSON.stringify(data.message));   
+        .then(data => document.getElementById("theCounter").innerHTML = JSON.stringify(data.message).replace(/['"]+/g, ''));   
       }
       </script>
 
