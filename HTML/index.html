@@ -343,7 +343,7 @@
       </table>
       <hr class="section-break" />
       <div>
-        <h1>Page View Count:  <span id="theCounter">.</span></h1>
+        <h1>Page View Count:  <span id="theCounter"></span></h1>
       </div>
       <!-- Education Section -->
       <!-- 
@@ -402,8 +402,8 @@
       async function getCounter() {
         await sleep(1000);
         fetch('https://ykwtqllnii.execute-api.us-east-1.amazonaws.com/Test/')
-          .then((response) => response.json())
-          .then((data) => console.log(data));
+        .then(res => res.json()) // the .json() method parses the JSON response into a JS object literal
+        .then(data => document.getElementById("theCounter").innerHTML = JSON.stringify(data.message));   
       }
       </script>
 
