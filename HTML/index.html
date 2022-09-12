@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png" /> -->
 
     <link
       rel="stylesheet"
@@ -20,7 +20,7 @@
     />
 
     <!-- <link rel="stylesheet" href="css/style.css" /> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script> -->
     <!--<link rel="stylesheet" href="css/main.css"> -->
     <style>
       header.header {
@@ -401,7 +401,7 @@
       async function getCounter() {
         await sleep(1000);
         fetch(apiURL)
-        .then(res => res.json()) // the .json() method parses the JSON response into a JS object literal
+        .then(res => res.json())
         .then(data => document.getElementById("theCounter").innerHTML = JSON.stringify(data.message).replace(/['"]+/g, ''));   
       }
       </script>
